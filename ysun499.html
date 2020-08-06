@@ -7,7 +7,61 @@
     <link rel="stylesheet" href="ysun499.css">
 </head>
 <body>
-    
+    <div class="logo">
+        <img class="logo-img" src="http://redsox.uoa.auckland.ac.nz/ds/logo-192x192.png">
+        <span class="title">Dunedin Dairy</span>
+    </div>
+    <header class="site-header">
+        <nav>
+            <button class="menu-toggle" >
+                <svg id="icon-open" viewBox="0 0 40 40" onclick="toggleMenuOn();">
+                    <rect y="7" width="30" height="2"></rect>
+                    <rect y="19" width="30" height="2"></rect>
+                    <rect y="31" width="30" height="2"></rect>
+                </svg>
+                <svg id="icon-close" viewBox="0 0 612 612" onclick="toggleMenuOff();">  
+                    <polygon points="612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397 306,341.411 576.521,611.397 612,575.997 341.459,306.011"></polygon>
+                </svg>
+            </button>
+            <ul id="menu" class="menu">
+                <li id="home" class="menu-item active">🏠Home</li>
+                <li id="product" class="menu-item" >🛒Product</li>
+                <li id="location" class="menu-item" >📌Location</li>
+                <li id="news" class="menu-item">📰News</li>
+                <li id="guestbook" class="menu-item">📖Guest Book</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="homepage" class="section">
+        <h1>HOME</h1>
+    </div>
+
+    <div id="productpage" class="section">
+        <h1>PRODUCT</h1>
+    </div>
+
+    <div id="locationpage" class="section">
+        <h1>LOCATION</h1>
+    </div>
+
+    <div id="newspage" class="section">
+        <h1>NEWS</h1>
+    </div>
+
+    <div id="guestbookpage" class="section">
+        <h1>GUEST BOOK</h1>
+    </div>
 </body>
 <script type="text/javascript" src="ysun499.js"></script>
+<!-- <script>
+    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/id', 
+        { 
+            headers : {
+                 "Accept" : "application/json",
+            },
+        }); 
+    const streamPromise = fetchPromise.then((response) => response.json());
+    streamPromise.then((data) => alert(data));
+</script> -->
 </html>
