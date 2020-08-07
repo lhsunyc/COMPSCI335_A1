@@ -24,25 +24,50 @@
                 </svg>
             </button>
             <ul id="menu" class="menu">
-                <li id="home" class="menu-item active">🏠Home</li>
-                <li id="product" class="menu-item" >🛒Product</li>
-                <li id="location" class="menu-item" >📌Location</li>
-                <li id="news" class="menu-item">📰News</li>
-                <li id="guestbook" class="menu-item">📖Guest Book</li>
+                <li id="home" class="menu-item" onclick="displayPage(this);">🏠Home</li>
+                <li id="product" class="menu-item" onclick="displayPage(this);">🛒Product</li>
+                <li id="location" class="menu-item" onclick="displayPage(this);">📌Location</li>
+                <li id="news" class="menu-item" onclick="displayPage(this);">📰News</li>
+                <li id="guestbook" class="menu-item" onclick="displayPage(this);">📖Guest Book</li>
+            </ul>
+            <ul id="menu-small" class="menu-small">
+                <li id="home" class="menu-item-small" onclick="displayPage(this);">🏠Home</li>
+                <li id="product" class="menu-item-small" onclick="displayPage(this);">🛒Product</li>
+                <li id="location" class="menu-item-small" onclick="displayPage(this);">📌Location</li>
+                <li id="news" class="menu-item-small" onclick="displayPage(this);">📰News</li>
+                <li id="guestbook" class="menu-item-small" onclick="displayPage(this);">📖Guest Book</li>
             </ul>
         </nav>
     </header>
 
     <div id="homepage" class="section">
         <h1>HOME</h1>
+        <div>
+            <h2></h2>
+            <p></p>
+            <img src="https://cdn.pixabay.com/photo/2020/07/17/09/47/cows-5413623_960_720.jpg">
+        </div>
     </div>
 
     <div id="productpage" class="section">
         <h1>PRODUCT</h1>
+        <div class="search-container">
+			<div class="icon-background">
+				<img class="search-icon" src="icon-search.png" title="Search" alt width="24" height="24">
+			</div>
+			<input type="search" id="searchInput" class="search-field" onkeydown="searchProducts()" placeholder="Search Products" name="search">
+        </div>
     </div>
 
     <div id="locationpage" class="section">
         <h1>LOCATION</h1>
+        <img src="http://redsox.uoa.auckland.ac.nz/ds/map.png" alt="">
+        <div id="contact">
+            <p>Address:&nbsp;535 Pine Hill Road, Dunedin, New Zealand</p>
+            <p><a href="mailto:info@DuneDin.co.nz">Email: info@DuneDin.co.nz</a></p>
+            <p><a href="tel:+6434486256">Phone: +64&nbsp;3&nbsp;448&nbsp;6256</a></p>
+            <p><a href="http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard">Add us to your contact</a></p>
+        </div>
     </div>
 
     <div id="newspage" class="section">
@@ -51,17 +76,15 @@
 
     <div id="guestbookpage" class="section">
         <h1>GUEST BOOK</h1>
+        <div>
+            <label>Full Name:</label><br>
+            <input type="text" id="fullname" name="name" placeholder="Enter your name"><br>
+            <label>Your comment:</label><br>
+            <textarea type="text" id="comment" name="comment" placeholder="Add your comments here..."></textarea>
+            <button onclick="postComment();">submit</button>
+        </div>
+        <iframe id="iframeComment" src="http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments" style="text-align: center;"></iframe>
     </div>
 </body>
 <script type="text/javascript" src="ysun499.js"></script>
-<!-- <script>
-    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/id', 
-        { 
-            headers : {
-                 "Accept" : "application/json",
-            },
-        }); 
-    const streamPromise = fetchPromise.then((response) => response.json());
-    streamPromise.then((data) => alert(data));
-</script> -->
 </html>

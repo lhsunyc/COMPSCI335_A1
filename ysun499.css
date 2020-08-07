@@ -5,6 +5,12 @@
 	margin: 0;
 	padding: 0;
 }
+ a{
+    list-style: none;
+    outline: none;
+    text-decoration: none;
+    color: #000000;
+}
 
 body {
     position: relative;
@@ -31,7 +37,7 @@ body {
 	height: 58px;
 	border-bottom: 1px solid #BBBBBB;
 	background-color: #7c7c7c;
-	display: block;
+    display: block;
 }
 
 .menu {
@@ -42,6 +48,13 @@ body {
     justify-content: center;
 }
 
+.menu-small{
+    height: 58px;
+    display: none;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+}
 
 .menu-item {
     display: flex;
@@ -49,7 +62,7 @@ body {
     height: 100%;
     margin: 0px 10px;
     align-items: center;
-    justify-content: center;
+    justify-content: center;;
 }
 
 .menu-item:hover {
@@ -57,9 +70,24 @@ body {
     cursor: pointer;
 }
 
-ul.menu li.active {
-    color: tomato;
+.menu-item-small {
+    display: flex;
+    background-color: #7c7c7c;
+    height: 100%;
+    margin: 0px 10px;
+    align-items: center;
+    justify-content: center;;
+    position: relative;
 }
+
+.menu-item-small:hover {
+    color: #BBBBBB;
+    cursor: pointer;
+}
+
+/* ul.menu li.active {
+    color: tomato;
+} */
 
 button.menu-toggle {
     display: none;
@@ -83,31 +111,180 @@ button.menu-toggle {
     cursor: pointer;
 }
 
+.section a{
+    list-style: none;
+    outline: none;
+}
+
+.section h1{
+    text-align: center;
+}
+
 #homepage {
     display: block;
+    text-align: center;
+}
+
+#homepage img{
+    width: 100%;
+    height: 100%;
+    max-width: 960px;
+    max-height: 640px;
 }
 
 #productpage {
     display: none;
 }
 
+.products{
+    display: inline-table;
+    height: 300px;
+    width: 250px;
+    border: 0.5px #7c7c7c solid;
+    border-radius: 20px;
+    padding: 12px 8px 0px 8px;
+    margin: 15px;
+    text-align: center;
+}
+
+.products img{
+    width: 100px;
+    height: 100px;
+}
+
+.products button{
+    height: 30px;
+    width: 48px;
+    border-radius: 15px;
+    border: transparent;
+    font-size: 12px;
+    background-color: #ebdb01;
+    outline: none;
+    cursor: pointer;
+}
+
+.products button:hover{
+    background-color: #ca2a2a;
+}
+
+.search-container{
+	display: flex;
+	background: transparent;
+	border: 0.5px solid #BBBBBB;
+	border-radius: 8px;
+	padding: 0px 5px;
+	align-items: center;
+	/* position: relative; */
+}
+
+/* css for search field class */
+.search-field{
+	background: transparent;
+	border: none;
+	padding: 0px 5px;
+	width: 90%;
+	overflow: hidden;
+	outline: none;
+	opacity: 25%;
+	/* position: relative; */
+}
+
+/* css for search field class (hover) */
+.search-field:hover{
+	transition: opacity .25s ease;
+	opacity: 100%;
+}
+
+/* css for icon background class */
+.icon-background{
+	width: 40px !important;
+	height: 40px !important;
+	background: transparent;
+	border-radius: 20px;
+	margin: 0px 6px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+/* css for icon background class (hover) */
+.icon-background:hover{
+	background: #EEEEEE;
+}
+
 #locationpage {
     display: none;
+    text-align: center;
+}
+
+#locationpage img{
+    height: 100%;
+    width: 100%;
+    max-height: 536x;
+    max-width: 715px;
 }
 
 #newspage {
     display: none;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+#newspage img{
+    height: 250px !important;
+    width: 150px !important;
 }
 
 #guestbookpage {
     display: none;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+#guestbookpage #fullname{
+    width: 100%;
+    height: 40px;
+    margin: 16px 0px;
+    padding: 8px;
+}
+
+#guestbookpage #comment{
+    width: 100%;
+    height: 62px;
+    margin: 16px 0px;
+    padding: 8px;
+}
+
+#guestbookpage button{
+    width: 120px;
+    height: 50px;
+    margin: 16px 0px;
+    border-radius: 25px;
+    background-color: #7c7c7c;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+
+iframe {
+    border: none;
+    width: 100%;
+    margin-top: 5%;
 }
 
 @media screen and (max-width: 509px){
-    .menu {
+    .menu{
+        display: none;
+    }
+    .menu-small {
         display: block;
     }
-    .menu-item {
+    .menu-item-small {
         display: none;
         margin: 0px ;
         border: 0.5px solid #BBBBBB;
@@ -116,15 +293,3 @@ button.menu-toggle {
         display: block;
     }
 }
-
-/* @media screen and (min-width: 510px){
-    .menu {
-        display: flex;
-    }
-    .menu-item {
-        display: flex;
-    }
-    button.menu-toggle {
-        display: none;
-    }
-} */
