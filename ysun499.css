@@ -118,6 +118,9 @@ button.menu-toggle {
 
 #homepage {
     display: block;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
     text-align: center;
 }
 
@@ -126,6 +129,7 @@ button.menu-toggle {
     height: 100%;
     max-width: 960px;
     max-height: 640px;
+    margin-top: 15px;
 }
 
 #productpage {
