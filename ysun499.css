@@ -62,7 +62,7 @@ body {
     height: 100%;
     margin: 0px 10px;
     align-items: center;
-    justify-content: center;;
+    justify-content: center;
 }
 
 .menu-item:hover {
@@ -76,7 +76,7 @@ body {
     height: 100%;
     margin: 0px 10px;
     align-items: center;
-    justify-content: center;;
+    justify-content: center;
     position: relative;
 }
 
