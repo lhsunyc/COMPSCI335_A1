@@ -1,27 +1,16 @@
 // Javascript Document
-// let menuitems = document.getElementById("menu");
-// let sections = menuitems.getElementsByClassName("menu-item");
-
-// for(let i=0; i<sections.length; i++){
-//     sections[i].addEventListener("click", function(){
-//        displayPage(this);
-//        let currentpage = document.getElementsByClassName("active");
-//        currentpage[0] = currentpage[0].className.replace(" active","");
-//        this.className += " active";
-//     });
-// }
 
 // initialise
 news();
 DisplayProduct();
 
-function displayPage(that){
+function displayPage(that) {
     let sectionpage = that.id + "page";
     let sections = document.getElementsByClassName("section");
-    for(let i=0; i<sectionpage.length; i++){
-        if(sections[i].id == sectionpage){
+    for (let i = 0; i < sectionpage.length; i++) {
+        if (sections[i].id == sectionpage) {
             sections[i].style.display = "block";
-        }else{
+        } else {
             sections[i].style.display = "none";
         }
     }
@@ -29,7 +18,7 @@ function displayPage(that){
 
 function toggleMenuOn() {
     let menu = document.getElementsByClassName("menu-item-small");
-    for(let i=0; i<menu.length; i++){
+    for (let i = 0; i < menu.length; i++) {
         menu[i].style.display = "flex";
     }
     document.getElementById("icon-open").style.display = "none";
@@ -38,20 +27,20 @@ function toggleMenuOn() {
 
 function toggleMenuOff() {
     let menu = document.getElementsByClassName("menu-item-small");
-    for(let i=0; i<menu.length; i++){
+    for (let i = 0; i < menu.length; i++) {
         menu[i].style.display = "none";
     }
     document.getElementById("icon-open").style.display = "inline-block";
     document.getElementById("icon-close").style.display = "none";
 }
 
-function DisplayProduct(){
-    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/items', 
-    { 
-        headers : {
-             "Accept" : "application/json",
-        },
-    }); 
+function DisplayProduct() {
+    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/items',
+        {
+            headers: {
+                "Accept": "application/json",
+            },
+        });
     const streamPromise = fetchPromise.then((response) => response.json());
 
     let section = document.getElementById("productpage");
@@ -60,7 +49,7 @@ function DisplayProduct(){
     const get = (data) => {
         console.log(data);
         let products, image, ItemId, Origin, Price, Title, Type, button;
-        for (let i=0; i<data.length; i++){
+        for (let i = 0; i < data.length; i++) {
             products = document.createElement("div");
             products.className += "products";
             image = document.createElement("img");
@@ -69,7 +58,7 @@ function DisplayProduct(){
             Price = document.createElement("h3");
             Type = document.createElement("h3")
             button = document.createElement("button");
-            
+
             ItemId = data[i].ItemId;
             image.src = imgurl + ItemId;
             products.id += ItemId;
@@ -91,26 +80,26 @@ function DisplayProduct(){
     streamPromise.then(get);
 }
 
-function searchProducts(){
-    
-    document.querySelectorAll('.products').forEach(function(element) {
+function searchProducts() {
+
+    document.querySelectorAll('.products').forEach(function (element) {
         element.style.display = "none";
     })
 
     let input = document.getElementById("searchInput").value;
-    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/search?term=' + input, 
-    { 
-        headers : {
-             "Accept" : "application/json",
-        },
-    }); 
+    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/search?term=' + input,
+        {
+            headers: {
+                "Accept": "application/json",
+            },
+        });
     const streamPromise = fetchPromise.then((response) => response.json());
 
     const get = (data) => {
         console.log(data);
         let ItemId;
 
-        for (let i=0; i<data.length; i++){
+        for (let i = 0; i < data.length; i++) {
             ItemId = data[i].ItemId;
             document.getElementById(ItemId).style.display = "inline-table";
         }
@@ -118,28 +107,28 @@ function searchProducts(){
     streamPromise.then(get);
 }
 
-function news(){
-    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/news', 
-        { 
-            headers : {
-                 "Accept" : "application/json",
+function news() {
+    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/news',
+        {
+            headers: {
+                "Accept": "application/json",
             },
-        }); 
+        });
     const streamPromise = fetchPromise.then((response) => response.json());
 
     let section = document.getElementById("newspage");
-    
+
     const update = (data) => {
         console.log(data);
         let newsfeed, titleField, image, pubDateField, descriptionField, linkField;
-        for (let i=0; i<data.length; i++){
+        for (let i = 0; i < data.length; i++) {
             newsfeed = document.createElement("a");
             titleField = document.createElement("h3");
             image = document.createElement("img");
             pubDateField = document.createElement("h4");
             descriptionField = document.createElement("h5");
             linkField = document.createElement("link");
-            
+
             titleField.innerHTML = data[i].titleField;
             image.src = data[i].enclosureField.urlField;
             pubDateField.innerHTML = data[i].pubDateField;
@@ -147,7 +136,7 @@ function news(){
             hr = document.createElement("hr")
 
             newsfeed.appendChild(linkField);
-            newsfeed.setAttribute("href",data[i].linkField);
+            newsfeed.setAttribute("href", data[i].linkField);
             newsfeed.appendChild(titleField);
             newsfeed.appendChild(image);
             newsfeed.appendChild(linkField);
@@ -160,25 +149,25 @@ function news(){
     streamPromise.then(update);
 }
 
-function postComment(){
+function postComment() {
     let name, comment, jcmt;
     name = document.getElementById("fullname").value;
     comment = document.getElementById("comment").value;
     jcmt = JSON.stringify(comment);
 
-    const fetchPromise = fetch("http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/comment?name=" + name, 
-        { 
-            headers : { 
-            "Content-Type" : "application/json", 
-        }, 
-        method : "POST", 
-        body : jcmt 
-    });
+    const fetchPromise = fetch("http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/comment?name=" + name,
+        {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: jcmt
+        });
 
     const streamPromise = fetchPromise.then((response) => response.json());
     streamPromise.then(result => refresh());
 
-    function refresh(){
+    function refresh() {
         document.getElementById('iframeComment').src = document.getElementById('iframeComment').src;
         document.getElementById("fullname").value = "";
         document.getElementById("comment").value = "";
