@@ -85,10 +85,6 @@ body {
     cursor: pointer;
 }
 
-/* ul.menu li.active {
-    color: tomato;
-} */
-
 button.menu-toggle {
     display: none;
     width: 100%;
@@ -134,6 +130,10 @@ button.menu-toggle {
 
 #productpage {
     display: none;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
 }
 
 .products{
@@ -168,13 +168,13 @@ button.menu-toggle {
 }
 
 .search-container{
-	display: flex;
+    display: flex;
+    height: 40px;
 	background: transparent;
 	border: 0.5px solid #BBBBBB;
 	border-radius: 8px;
 	padding: 0px 5px;
 	align-items: center;
-	/* position: relative; */
 }
 
 /* css for search field class */
@@ -182,35 +182,16 @@ button.menu-toggle {
 	background: transparent;
 	border: none;
 	padding: 0px 5px;
-	width: 90%;
+	width: 100%;
 	overflow: hidden;
 	outline: none;
 	opacity: 25%;
-	/* position: relative; */
 }
 
 /* css for search field class (hover) */
 .search-field:hover{
 	transition: opacity .25s ease;
 	opacity: 100%;
-}
-
-/* css for icon background class */
-.icon-background{
-	width: 40px !important;
-	height: 40px !important;
-	background: transparent;
-	border-radius: 20px;
-	margin: 0px 6px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-}
-
-/* css for icon background class (hover) */
-.icon-background:hover{
-	background: #EEEEEE;
 }
 
 #locationpage {
@@ -277,7 +258,7 @@ iframe {
     margin-top: 5%;
 }
 
-@media screen and (max-width: 509px){
+@media screen and (max-width: 526px){
     .menu{
         display: none;
     }

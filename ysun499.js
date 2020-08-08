@@ -14,9 +14,6 @@
 // initialise
 news();
 DisplayProduct();
-// document.getElementById("searchInput").addEventListener("keyup",function(){
-//     searchProducts(this.value);
-// });
 
 function displayPage(that){
     let sectionpage = that.id + "page";
@@ -56,7 +53,6 @@ function DisplayProduct(){
         },
     }); 
     const streamPromise = fetchPromise.then((response) => response.json());
-    // streamPromise.then((data) => alert(data));
 
     let section = document.getElementById("productpage");
     let imgurl = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=";
@@ -76,6 +72,7 @@ function DisplayProduct(){
             
             ItemId = data[i].ItemId;
             image.src = imgurl + ItemId;
+            products.id += ItemId;
             Title.innerHTML = data[i].Title;
             Origin.innerHTML = "Made in " + data[i].Origin;
             Price.innerHTML = "$" + data[i].Price;
@@ -96,8 +93,8 @@ function DisplayProduct(){
 
 function searchProducts(){
     
-    document.querySelectorAll('.products').forEach(function(elemet) {
-        elemet.remove();
+    document.querySelectorAll('.products').forEach(function(element) {
+        element.style.display = "none";
     })
 
     let input = document.getElementById("searchInput").value;
@@ -109,38 +106,13 @@ function searchProducts(){
     }); 
     const streamPromise = fetchPromise.then((response) => response.json());
 
-    let section = document.getElementById("productpage");
-    let imgurl = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=";
-
     const get = (data) => {
         console.log(data);
-        let products, image, ItemId, Origin, Price, Title, Type, button;
+        let ItemId;
 
         for (let i=0; i<data.length; i++){
-            products = document.createElement("div");
-            products.className += "products";
-            image = document.createElement("img");
-            Title = document.createElement("h3")
-            Origin = document.createElement("h3");
-            Price = document.createElement("h3");
-            Type = document.createElement("h3")
-            button = document.createElement("button");
-            
             ItemId = data[i].ItemId;
-            image.src = imgurl + ItemId;
-            Title.innerHTML = data[i].Title;
-            Origin.innerHTML = "Made in " + data[i].Origin;
-            Price.innerHTML = "$" + data[i].Price;
-            Type.innerHTML = data[i].Type;
-            button.innerHTML = "Buy";
-
-            products.appendChild(image);
-            products.appendChild(Title);
-            products.appendChild(Origin);
-            products.appendChild(Type);
-            products.appendChild(Price);
-            products.appendChild(button)
-            section.appendChild(products);
+            document.getElementById(ItemId).style.display = "inline-table";
         }
     }
     streamPromise.then(get);
