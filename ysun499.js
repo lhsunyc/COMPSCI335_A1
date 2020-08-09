@@ -111,9 +111,7 @@ function searchProducts() {
     const streamPromise = fetchPromise.then((response) => response.json());
 
     const get = (data) => {
-
         let ItemId;
-
         for (let i = 0; i < data.length; i++) {
             ItemId = data[i].ItemId;
             document.getElementById(ItemId).style.display = "inline-table";
