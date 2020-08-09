@@ -248,3 +248,19 @@ function postComment() {
         document.getElementById("comment").value = "";
     }
 }
+
+/** set time interval for key action to prevent fast typing issues*/
+var flag = 0;
+var t;
+function openFlag() {
+    t = setTimeout(function () { flag = 1; fireAction(); }, 100);
+}
+function closeFlag() {
+    clearTimeout(t);
+    flag = 0;
+}
+function fireAction() {
+    if (flag) {
+        searchProducts();
+    }
+}
