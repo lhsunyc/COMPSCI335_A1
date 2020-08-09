@@ -3,7 +3,11 @@
 // initialise
 news();
 DisplayProduct();
+getContact();
 
+/**
+ * This function is used to display the content of the section
+ */
 function displayPage(that) {
     let sectionpage = that.id + "page";
     let sections = document.getElementsByClassName("section");
@@ -16,6 +20,9 @@ function displayPage(that) {
     }
 }
 
+/**
+ * This function is to toggle menu on
+ */
 function toggleMenuOn() {
     let menu = document.getElementsByClassName("menu-item-small");
     for (let i = 0; i < menu.length; i++) {
@@ -25,6 +32,9 @@ function toggleMenuOn() {
     document.getElementById("icon-close").style.display = "inline-block";
 }
 
+/**
+ * This function is to toggle menu off
+ */
 function toggleMenuOff() {
     let menu = document.getElementsByClassName("menu-item-small");
     for (let i = 0; i < menu.length; i++) {
@@ -34,6 +44,9 @@ function toggleMenuOff() {
     document.getElementById("icon-close").style.display = "none";
 }
 
+/**
+ * This function is to display products at product page
+ */
 function DisplayProduct() {
     const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/items',
         {
@@ -47,7 +60,6 @@ function DisplayProduct() {
     let imgurl = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=";
 
     const get = (data) => {
-        console.log(data);
         let products, image, ItemId, Origin, Price, Title, Type, button;
         for (let i = 0; i < data.length; i++) {
             products = document.createElement("div");
@@ -80,6 +92,9 @@ function DisplayProduct() {
     streamPromise.then(get);
 }
 
+/**
+ * This function is to serch item and shrink product list dynamically
+ */
 function searchProducts() {
 
     document.querySelectorAll('.products').forEach(function (element) {
@@ -96,7 +111,7 @@ function searchProducts() {
     const streamPromise = fetchPromise.then((response) => response.json());
 
     const get = (data) => {
-        console.log(data);
+
         let ItemId;
 
         for (let i = 0; i < data.length; i++) {
@@ -107,6 +122,66 @@ function searchProducts() {
     streamPromise.then(get);
 }
 
+/**
+ * This function is to fetch contact information
+ */
+function getContact() {
+    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard');
+
+    const streamPromise = fetchPromise.then((response) => response.text());
+
+    let section = document.getElementById("locationpage");
+
+    const update = (data) => {
+        let contact, address, phone, email, vcard, phonehref, emailhref, vcardhref;
+        let sentence, addressLine, phoneLine, emailLine;
+        let addressContent, phoneContent, emailContent;
+
+        contact = document.createElement("div");
+        contact.className += "contact";
+        address = document.createElement("p");
+        phone = document.createElement("p");
+        email = document.createElement("p");
+        vcard = document.createElement("p");
+
+        phonehref = document.createElement("a");
+        emailhref = document.createElement("a");
+        vcardhref = document.createElement("a");
+
+        sentence = data.split("\n");
+        addressLine = sentence[4].split(";");
+        addressContent = addressLine[4] + ", " + addressLine[5] + ", " + addressLine[6];
+
+        phoneLine = sentence[3].split(";");
+        phoneContent = phoneLine[2].split(":")[1];
+
+        emailLine = sentence[5].split(":");
+        emailContent = emailLine[1];
+
+        address.innerHTML = "Address: " + addressContent;
+        phonehref.innerHTML = "Phone: " + phoneContent;
+        emailhref.innerHTML = "Email: " + emailContent;
+        vcardhref.innerHTML = "Add us to your contact";
+
+        phonehref.setAttribute("href", "tel:" + phoneContent);
+        emailhref.setAttribute("href", "mailto:" + emailContent);
+        vcardhref.setAttribute("href", "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard");
+
+        phone.appendChild(phonehref);
+        email.appendChild(emailhref);
+        vcard.appendChild(vcardhref);
+        contact.appendChild(address);
+        contact.appendChild(phone);
+        contact.appendChild(email);
+        contact.appendChild(vcard);
+        section.appendChild(contact);
+    }
+    streamPromise.then(update);
+}
+
+/**
+ * This function is to fetch news feed from server and display them at news page
+ */
 function news() {
     const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/news',
         {
@@ -119,7 +194,6 @@ function news() {
     let section = document.getElementById("newspage");
 
     const update = (data) => {
-        console.log(data);
         let newsfeed, titleField, image, pubDateField, descriptionField, linkField;
         for (let i = 0; i < data.length; i++) {
             newsfeed = document.createElement("a");
@@ -149,6 +223,9 @@ function news() {
     streamPromise.then(update);
 }
 
+/**
+ * This function enables users to post comment at guest book page and review them
+ */
 function postComment() {
     let name, comment, jcmt;
     name = document.getElementById("fullname").value;

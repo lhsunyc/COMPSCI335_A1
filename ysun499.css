@@ -5,17 +5,14 @@
 	margin: 0;
 	padding: 0;
 }
- a{
-    list-style: none;
-    outline: none;
-    text-decoration: none;
-    color: #000000;
-}
 
 body {
     position: relative;
 }
+/* ---------------------- */
 
+/* ----Header content---- */
+/* ---------------------- */
 .logo {
     width: auto;
     display: flex;
@@ -106,7 +103,10 @@ button.menu-toggle {
     height: 30px;
     cursor: pointer;
 }
+/* ---------------- */
 
+/* ----sections---- */
+/* ---------------- */
 .section a{
     list-style: none;
     outline: none;
@@ -115,7 +115,11 @@ button.menu-toggle {
 .section h1{
     text-align: center;
 }
+/* ---------------- */
 
+
+/* ----homepage---- */
+/* ---------------- */
 #homepage {
     display: block;
     width: 100%;
@@ -131,7 +135,10 @@ button.menu-toggle {
     max-height: 640px;
     margin-top: 15px;
 }
+/* ------------------- */
 
+/* ----productpage---- */
+/* ------------------- */
 #productpage {
     display: none;
     width: 100%;
@@ -198,6 +205,11 @@ button.menu-toggle {
 	opacity: 100%;
 }
 
+/* -------------------- */
+
+
+/* ----locationpage---- */
+/* -------------------- */
 #locationpage {
     display: none;
     text-align: center;
@@ -210,6 +222,21 @@ button.menu-toggle {
     max-width: 715px;
 }
 
+.contact {
+    width: 100%;
+    height: 90px;
+    max-width: 800px;
+    padding: 3px 0px;
+    margin: auto;
+    border: 0.5px #7c7c7c solid;
+    border-radius: 15px;
+    background-color: #e9b545;
+}
+/* -------------------- */
+
+
+/* ----newspage---- */
+/* -------------------- */
 #newspage {
     display: none;
     width: 100%;
@@ -223,6 +250,17 @@ button.menu-toggle {
     width: 150px !important;
 }
 
+#newspage a{
+    list-style: none;
+    outline: none;
+    text-decoration: none;
+    color: #000000;
+}
+/* -------------------- */
+
+
+/* ----guestbookpage---- */
+/* -------------------- */
 #guestbookpage {
     display: none;
     width: 100%;
@@ -260,8 +298,10 @@ iframe {
     border: none;
     width: 100%;
     margin-top: 5%;
+    text-align: center;
 }
 
+/* for small screen devices */
 @media screen and (max-width: 526px){
     .menu{
         display: none;
