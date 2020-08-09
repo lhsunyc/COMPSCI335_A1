@@ -150,10 +150,11 @@ button.menu-toggle {
 .products{
     display: inline-table;
     height: 300px;
-    width: 250px;
+    width: 100%;
+    max-width: 250px;
     border: 0.5px #7c7c7c solid;
     border-radius: 20px;
-    padding: 12px 8px 0px 8px;
+    padding: 8px;
     margin: 15px;
     text-align: center;
 }
@@ -164,18 +165,26 @@ button.menu-toggle {
 }
 
 .products button{
-    height: 30px;
-    width: 48px;
-    border-radius: 15px;
-    border: transparent;
-    font-size: 12px;
-    background-color: #ebdb01;
+    width: auto;
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid #865fc1;
+    border-radius: 30px;
+    color: #865fc1;
+    padding: 12px 20px;
+    line-height: 17px;
+    min-width: 120px;
+    min-height: 40px;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 600;
     outline: none;
     cursor: pointer;
 }
 
 .products button:hover{
-    background-color: #ca2a2a;
+    color: #ffffff;
+    background-color:#865fc1;
 }
 
 .search-container{
@@ -223,8 +232,8 @@ button.menu-toggle {
 }
 
 .contact {
-    width: 100%;
-    height: 90px;
+    display: grid;
+    height: 120px;
     max-width: 800px;
     padding: 3px 0px;
     margin: auto;
@@ -269,29 +278,40 @@ button.menu-toggle {
 }
 
 #guestbookpage #fullname{
-    width: 100%;
-    height: 40px;
+    width: 99%;
+    height: 30px;
     margin: 16px 0px;
-    padding: 8px;
+    padding: 8px 0px;
 }
 
 #guestbookpage #comment{
-    width: 100%;
+    width: 99%;
     height: 62px;
     margin: 16px 0px;
-    padding: 8px;
+    padding: 8px 0px;
 }
 
 #guestbookpage button{
-    width: 120px;
-    height: 50px;
-    margin: 16px 0px;
-    border-radius: 25px;
-    background-color: #7c7c7c;
-    color: white;
+    width: auto;
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid #7c7c7c;
+    border-radius: 30px;
+    color: #7c7c7c;
+    padding: 12px 20px;
+    line-height: 17px;
+    min-width: 120px;
+    min-height: 40px;
     font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 600;
     outline: none;
     cursor: pointer;
+}
+
+#guestbookpage button:hover{
+    color: #ffffff;
+    background-color:#7c7c7c;
 }
 
 iframe {
