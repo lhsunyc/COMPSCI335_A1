@@ -131,9 +131,8 @@ function getContact() {
     let section = document.getElementById("locationpage");
 
     const update = (data) => {
-        let contact, address, phone, email, vcard, phonehref, emailhref, vcardhref;
-        let sentence, addressLine, phoneLine, emailLine;
-        let addressContent, phoneContent, emailContent;
+        data = data.split("\n");
+        let contact, address, phone, email, vcard, vcardhref;
 
         contact = document.createElement("div");
         contact.className += "contact";
@@ -141,32 +140,32 @@ function getContact() {
         phone = document.createElement("p");
         email = document.createElement("p");
         vcard = document.createElement("p");
-
-        phonehref = document.createElement("a");
-        emailhref = document.createElement("a");
         vcardhref = document.createElement("a");
 
-        sentence = data.split("\n");
-        addressLine = sentence[4].split(";");
-        addressContent = addressLine[4] + ", " + addressLine[5] + ", " + addressLine[6];
+        for (let i = 0; i < data.length; i++) {
+            let sentence = data[i].split(":");
+            console.log(sentence);
+            let hrefLink = document.createElement("a");
 
-        phoneLine = sentence[3].split(";");
-        phoneContent = phoneLine[2].split(":")[1];
+            if (sentence[0].includes("ADR")) {
+                address.innerHTML = "Address: " + sentence[1].replace(';;','');
+                console.log('address');
+            } else if (sentence[0].includes("TEL")) {
+                phone.innerHTML = "Phone: ";
+                hrefLink.setAttribute("href", "tel:" + sentence[1]);
+                hrefLink.innerHTML = sentence[1];
+                phone.appendChild(hrefLink);
+            } else if (sentence[0].includes("EMAIL")) {
+                email.innerHTML = "Email: ";
+                hrefLink.setAttribute("href", "mailto:" + sentence[1]);
+                hrefLink.innerHTML = sentence[1];
+                email.appendChild(hrefLink);
+            }
+        }
 
-        emailLine = sentence[5].split(":");
-        emailContent = emailLine[1];
-
-        address.innerHTML = "Address: " + addressContent;
-        phonehref.innerHTML = "Phone: " + phoneContent;
-        emailhref.innerHTML = "Email: " + emailContent;
         vcardhref.innerHTML = "Add us to your contact";
-
-        phonehref.setAttribute("href", "tel:" + phoneContent);
-        emailhref.setAttribute("href", "mailto:" + emailContent);
         vcardhref.setAttribute("href", "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard");
 
-        phone.appendChild(phonehref);
-        email.appendChild(emailhref);
         vcard.appendChild(vcardhref);
         contact.appendChild(address);
         contact.appendChild(phone);
