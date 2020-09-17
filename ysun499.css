@@ -267,6 +267,108 @@ button.menu-toggle {
 }
 /* -------------------- */
 
+/* ----accountpage---- */
+/* -------------------- */
+#accountpage {
+    display: none;
+}
+
+#accountpage .switch{
+    font-size: 20px;
+    text-align: center;
+}
+
+#accountpage .switch span{
+    color: #ccc;
+    cursor: pointer;
+}
+
+#accountpage .switch span.active{
+    color: #7c7c7c;
+    cursor: pointer;
+}
+
+#reg-passwd, #repeat{
+    display: none;
+}
+
+
+#accountpage .form {
+    width: 200px;
+    margin: 10px auto;
+}
+
+#accountpage .input{
+    position: relative;
+    width: 100%;
+    margin: 20px 0;
+}
+
+#accountpage .input input{
+    outline: none;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #7c7c7c;
+}
+
+#accountpage .input::after{
+    content: attr(placeholder);
+    position: absolute;
+    left: 0;
+    top: -30%;
+    font-size: 20px;
+    color: #7c7c7c;
+    transition: .3s;
+}
+
+#accountpage .input.focus::after{
+   top: -70%;
+   font-size: 10px;
+}
+
+#accountpage .show{
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 10px;
+    font-weight: 700;
+    color: #7c7c7c;
+    cursor: pointer;
+}
+
+/* #registerpage .password:valid ~ .show{
+    display:block;
+} */
+
+#accountpage button{
+    width: auto;
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid #7c7c7c;
+    border-radius: 30px;
+    color: #7c7c7c;
+    padding: 12px 20px;
+    line-height: 17px;
+    min-width: 120px;
+    min-height: 40px;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+}
+
+#accountpage button#reg-btn{
+    display: none;
+}
+
+#accountpage button:hover{
+    color: #ffffff;
+    background-color:#7c7c7c;
+}
+
+/* -------------------- */
 
 /* ----guestbookpage---- */
 /* -------------------- */
@@ -322,7 +424,7 @@ iframe {
 }
 
 /* for small screen devices */
-@media screen and (max-width: 526px){
+@media screen and (max-width: 628px){
     .menu{
         display: none;
     }

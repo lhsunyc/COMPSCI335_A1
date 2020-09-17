@@ -37,6 +37,7 @@
                 <li id="location" class="menu-item" onclick="displayPage(this);">📌Location</li>
                 <li id="news" class="menu-item" onclick="displayPage(this);">📰News</li>
                 <li id="guestbook" class="menu-item" onclick="displayPage(this);">📖Guest Book</li>
+                <li id="account" class="menu-item" onclick="displayPage(this);">🖋️Account</li>
             </ul>
             <ul id="menu-small" class="menu-small">
                 <li id="home" class="menu-item-small" onclick="displayPage(this);">🏠Home</li>
@@ -44,6 +45,7 @@
                 <li id="location" class="menu-item-small" onclick="displayPage(this);">📌Location</li>
                 <li id="news" class="menu-item-small" onclick="displayPage(this);">📰News</li>
                 <li id="guestbook" class="menu-item-small" onclick="displayPage(this);">📖Guest Book</li>
+                <li id="account" class="menu-item-small" onclick="displayPage(this);">🖋️Account</li>
             </ul>
         </nav>
     </header>
@@ -96,6 +98,32 @@
         <h2>Comments</h2>
         <iframe id="iframeComment" src="http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments"></iframe>
     </div>
+
+    <!-- account page -->
+    <div id="accountpage" class="section">
+        <h1>Account</h1>
+        <div class="switch">
+            <span id="login" class="active">Log in</span><span>/</span><span id="register">Register</span>
+        </div>
+        <div class="form">
+            <div class="input" placeholder="Username">
+                <input id="username" type="text">
+            </div>
+            <div class="input" id="login-passwd" placeholder="Password">
+                <input class="password" id="password" type="password" onkeyup="showpass()">
+                <span class="show">show</span>
+            </div>
+            <div class="input" id="reg-passwd" placeholder="Password">
+                <input class="password" id="reg-password" type="password">
+            </div>
+            <div class="input" id="repeat" placeholder="Repeat">
+                <input class="password" id="repeat-password" type="password">
+            </div>
+            <button id="login-btn">login</button>
+            <button id="reg-btn" onclick="registerUser();">register</button>
+        </div>
+    </div>
+
 </body>
 <script type="text/javascript" src="ysun499.js"></script>
 
