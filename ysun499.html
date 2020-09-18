@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dunedin Diary</title>
+    <link rel="icon" href=" http://redsox.uoa.auckland.ac.nz/ds/logo.svg">
     <link rel="stylesheet" href="ysun499.css">
 </head>
 
@@ -96,7 +97,7 @@
             <button onclick="postComment();">submit</button>
         </div><br>
         <h2>Comments</h2>
-        <iframe id="iframeComment" src="http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments"></iframe>
+        <iframe id="iframeComment" src="http://localhost:8188/DairyService.svc/htmlcomments"></iframe>
     </div>
 
     <!-- account page -->
@@ -119,8 +120,12 @@
             <div class="input" id="repeat" placeholder="Repeat">
                 <input class="password" id="repeat-password" type="password">
             </div>
-            <button id="login-btn">login</button>
-            <button id="reg-btn" onclick="registerUser();">register</button>
+            <button id="login-btn" onclick="loginUser()">login</button>
+            <button id="reg-btn" onclick="registerUser()">register</button>
+        </div>
+        <div class="logged-in">
+            <h4 id="message"></h4><br>
+            <button id="logout-btn" onclick="logoutUser()">logout</button>
         </div>
     </div>
 

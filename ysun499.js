@@ -11,7 +11,7 @@ getContact();
 function displayPage(that) {
     let sectionpage = that.id + "page";
     let sections = document.getElementsByClassName("section");
-    for (let i = 0; i < sectionpage.length; i++) {
+    for (let i = 0; i < sections.length; i++) {
         if (sections[i].id == sectionpage) {
             sections[i].style.display = "block";
         } else {
@@ -48,7 +48,7 @@ function toggleMenuOff() {
  * This function is to display products at product page
  */
 function DisplayProduct() {
-    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/items',
+    const fetchPromise = fetch('http://localhost:8188/DairyService.svc/items',
         {
             headers: {
                 "Accept": "application/json",
@@ -57,7 +57,7 @@ function DisplayProduct() {
     const streamPromise = fetchPromise.then((response) => response.json());
 
     let section = document.getElementById("productpage");
-    let imgurl = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=";
+    let imgurl = "http://localhost:8188/DairyService.svc/itemimg?id=";
 
     const get = (data) => {
         let products, image, ItemId, Origin, Price, Title, Type, button;
@@ -104,7 +104,7 @@ function searchProducts() {
     })
 
     let input = document.getElementById("searchInput").value;
-    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/search?term=' + input,
+    const fetchPromise = fetch('http://localhost:8188/DairyService.svc/search?term=' + input,
         {
             headers: {
                 "Accept": "application/json",
@@ -126,7 +126,7 @@ function searchProducts() {
  * This function is to fetch contact information
  */
 function getContact() {
-    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard');
+    const fetchPromise = fetch('http://localhost:8188/DairyService.svc/vcard');
 
     const streamPromise = fetchPromise.then((response) => response.text());
 
@@ -164,7 +164,7 @@ function getContact() {
         }
 
         vcardhref.innerHTML = "Add us to your contact";
-        vcardhref.setAttribute("href", "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard");
+        vcardhref.setAttribute("href", "http://localhost:8188/DairyService.svc/vcard");
 
         vcard.appendChild(vcardhref);
         contact.appendChild(address);
@@ -180,7 +180,7 @@ function getContact() {
  * This function is to fetch news feed from server and display them at news page
  */
 function news() {
-    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/news',
+    const fetchPromise = fetch('http://localhost:8188/DairyService.svc/news',
         {
             headers: {
                 "Accept": "application/json",
@@ -229,7 +229,7 @@ function postComment() {
     comment = document.getElementById("comment").value;
     jcmt = JSON.stringify(comment);
 
-    const fetchPromise = fetch("http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/comment?name=" + name,
+    const fetchPromise = fetch("http://localhost:8188/DairyService.svc/comment?name=" + name,
         {
             headers: {
                 "Content-Type": "application/json",
@@ -257,7 +257,7 @@ function registerUser() {
     if (password != repeat) {
         alert("Password did not match, please confirm your password!");
     } else {
-        const uri = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/register";
+        const uri = "http://localhost:8188/DairyService.svc/register";
         let xhr = new XMLHttpRequest();
 
         xhr.open("POST", uri, true);
@@ -283,10 +283,98 @@ function registerUser() {
     }
 }
 
-function buyProduct(itemID) {
-    console.log(itemID);
-    window.open('http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/buy?id=' + itemID);
+let username = "";
+let loginPassword = "";
+
+function loginUser() {
+    username = document.getElementById('username').value;
+    loginPassword = document.getElementById('password').value;
+
+    let xhr = new XMLHttpRequest();
+    const url = "http://localhost:8189/Service.svc/user";
+
+    xhr.open("GET", url, true, username, loginPassword);
+    xhr.withCredentials = true;
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            console.log('in');
+            alert("you have logged in as " + username);
+
+            let form, title, userInfo;
+
+            form = document.getElementsByClassName('form');
+            title = document.getElementsByClassName('switch');
+            userInfo = document.getElementsByClassName('logged-in');
+
+            const message = document.querySelector('#message');
+            message.textContent = "kia ora, " + username;
+
+            for (let i = 0; i < title.length; i++) {
+                title[i].style.display = "none";
+            }
+
+            for (let i = 0; i < form.length; i++) {
+                form[i].style.display = "none";
+            }
+
+            for (let i = 0; i < userInfo.length; i++) {
+                userInfo[i].style.display = "block";
+            }
+
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+        } else {
+            alert("Incorrect username or passward");
+        }
+    }
+    xhr.send(null);
 }
+
+function logoutUser() {
+    username = "";
+    loginPassword = "";
+    alert("you have logged out");
+
+    let form, title, userInfo;
+
+    form = document.getElementsByClassName('form');
+    title = document.getElementsByClassName('switch');
+    userInfo = document.getElementsByClassName('logged-in');
+
+    for (let i = 0; i < title.length; i++) {
+        title[i].style.display = "block";
+    }
+
+    for (let i = 0; i < form.length; i++) {
+        form[i].style.display = "block";
+    }
+
+    for (let i = 0; i < userInfo.length; i++) {
+        userInfo[i].style.display = "none";
+    }
+}
+
+function buyProduct(itemID) {
+    if (username.length == 0 || loginPassword == 0) {
+        alert("You need to log in first before purchasing an item");
+        document.getElementById("account").click();
+    } else {
+        console.log(itemID);
+        const uri = 'http://localhost:8189/Service.svc/buy?id=' + itemID;
+        let xhr = new XMLHttpRequest();
+
+        console.log(username);
+        console.log(loginPassword);
+
+        xhr.open("GET", uri, true, username, loginPassword);
+        xhr.withCredentials = true;
+        xhr.onload = function () {
+            alert(xhr.responseText);
+        }
+        xhr.send(null);
+    }
+}
+
 let inputs = document.getElementsByClassName("input");
 
 for (i = 0; i < inputs.length; i++) {
